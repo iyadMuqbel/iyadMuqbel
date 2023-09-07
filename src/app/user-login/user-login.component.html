@@ -1,0 +1,2 @@
+<button class="btn btn-success" [disabled]="isUserLogged" (click)="login()">Login</button>
+<button class="btn btn-warning" [disabled]="!isUserLogged" (click)="logout()">LogOut</button>

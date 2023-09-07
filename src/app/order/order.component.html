@@ -1,0 +1,55 @@
+
+<table class="flags-table">
+    <caption>List of Products</caption>
+    <thead>
+      <tr>
+        <th scope="col" style="width:10%">#</th>
+        <th scope="col" style="width:20%">Name</th>
+        <th scope="col" style="width:20%">Image</th>
+        <th scope="col" style="width:10%">Quantity</th>
+        <th scope="col" style="width:10%">Price $</th>
+        <th scope="col" style="width:10%">Price JD</th>
+        <th scope="col" style="width:20%">Count Of Items</th>
+        <th scope="col" style="width:10%">Buy Items</th>
+        <th scope="col" style="width:10%">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- [style]="{'background-color': item.Quantity ? 'red' :  null }" -->
+      
+      <tr   *ngFor="let item of productOfCategory;let i = index" 
+      [ngStyle]="{'background-color': item.Quantity ==0 ? 'red': (item.Quantity ==1 ? 'yellow' : (item.Quantity ==2 ? 'green' : 'white'))}">
+      
+        <th scope="row" >{{i+1}}</th>
+        <td>{{item.name}}</td>
+        <td><img src='{{item.imageURL}}'></td>
+        <td >
+          <!-- <div *ngIf="item.Quantity!=0 else othersElse">{{item.Quantity}}</div> -->
+        
+            <span [ngSwitch]="item.Quantity">
+            <p *ngSwitchCase="0">
+            Out Of Service
+            </p>
+            <p *ngSwitchCase="1">
+            The Last One
+            </p>
+            <p *ngSwitchCase="2">
+            The Last TOW
+            </p>
+            <p *ngSwitchDefault>
+              {{item.Quantity}}
+            </p>
+            </span>
+
+          <ng-template #othersElse>Out Of Stock</ng-template>
+          
+        </td>
+        <td>{{item.Price | currency : 'USD' : 'code'}}</td>
+        <td>{{item.Price | ConvertUSDToJD : .71 | currency : 'JD' : 'code'}}</td>
+        <td><input #itemCount type="number" (keyup.enter)="newTotalPrice(itemCount.value,item.Price)"></td>
+        <td><button type="button" class="btn btn-primary" (click)="newTotalPrice(itemCount.value,item.Price)">Add</button></td>
+        <td><button type="button" class="btn btn-primary" (click)="OpenDetails(item.id)" >Details</button></td>
+      </tr>
+    
+    </tbody>
+  </table>

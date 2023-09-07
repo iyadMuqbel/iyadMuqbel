@@ -1,0 +1,17 @@
+<h1>{{storeinfo.name}}</h1>
+<img *ngIf="isShowImage" [src]="storeinfo.imgURL" alt="">
+<div>
+    <button type="button" (click)="clickImageButton()">
+        Click Me To View Or Hide Image.
+        </button>
+</div>
+
+<h1>{{storeinfo.branches    }}</h1>
+
+<h1>Our Branches : </h1>
+
+<ul>
+    <li *ngFor="let item of storeinfo.branches">
+        {{item}}
+    </li>
+</ul>

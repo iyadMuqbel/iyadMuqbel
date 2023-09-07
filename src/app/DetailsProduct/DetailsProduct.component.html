@@ -1,0 +1,15 @@
+{{prd | json}}
+
+<h1>{{prd?.id }}</h1>
+
+<h1>{{currentProductId}}</h1>
+
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" [src]="prd?.imageURL" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Product Name : {{prd?.name}}</h5>
+    <p class="card-text">Quantity : {{prd?.Quantity}}</p>
+    <p class="card-text">Proce : {{prd?.Price}}</p>
+    <button class="btn btn-primary" (click)="backPage()">back</button>
+  </div>
+</div>
